@@ -20,7 +20,7 @@ def hits_score(hit_path, local_path, language):
         local_lines.append(value)
 
     if language is not 'English':
-        english_path = open('/home/ibrahimsharaf/Desktop/merged/English.json').read()
+        english_path = open('/home/ibrahimsharaf/Desktop/Localizations/English.json').read()
         english_dict = json.loads(english_path)
         for key, value in english_dict.items():
             local_lines.append(value)
