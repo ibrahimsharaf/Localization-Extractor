@@ -25,8 +25,6 @@ def parse_one_file(filename):
 
     values = []
     singles = []
-    if filename == '/home/ibrahimsharaf/Desktop/phpbb/English/common1.php':
-        print('hena!!!')
 
     for i in lines:
         cleaned_text = clean_html(i)
