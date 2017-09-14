@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
 import re
 import os
 import json
+import codecs
 import pathlib
 from xml.etree import ElementTree
 
@@ -17,7 +19,7 @@ def parse_one_file(filename):
     :param filename: configurations file path
     :return: dict of key (English term) -> value (given language term)
     """
-    with open(filename, 'rt', encoding='utf-8', errors='ignore') as f:
+    with codecs.open(filename, "r", encoding='utf-8', errors='ignore') as f:
         tree = ElementTree.parse(f)
 
     d = {}
@@ -45,12 +47,12 @@ def get_all_files(directoryname):
             file_name = pathlib.PurePath(path, name)
             localization_values.update(parse_one_file(file_name))
         print(len(localization_values))
-        with open(language+'.json', 'w') as f:
-            json.dump(localization_values, f)
+        with open(language.lower()+'.json', 'w', encoding='utf-16') as f:
+            json.dump(localization_values, f, ensure_ascii=False)
 
 
 def main():
-    path = '/home/ibrahimsharaf/Desktop/xenforo'
+    path = '/home/ibrahimsharaf/Desktop/Forums/xenforo'
     get_all_files(path)
 
 

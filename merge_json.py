@@ -1,14 +1,13 @@
+# -*- coding: utf-8 -*-
 import json
-
+import codecs
 
 def merge(filename1, filename2, language):
-    json_data1 = open(filename1).read()
-    dict1 = json.loads(json_data1)
-    json_data2 = open(filename2).read()
-    dict2 = json.loads(json_data2)
+    dict1 = json.load(codecs.open(filename1, 'r', encoding='utf-16'))
+    dict2 = json.load(codecs.open(filename2, 'r', encoding='utf-16'))
     out = dict(list(dict1.items()) + list(dict2.items()))
-    with open(language+'.json', 'w') as f:
-        json.dump(out, f)
+    with open(language+'.json', 'w', encoding='utf-16') as f:
+        json.dump(out, f, ensure_ascii=False)
 
-merge('/home/ibrahimsharaf/Desktop/myBBLocalization/english.json'
-      , '/home/ibrahimsharaf/Desktop/vblocalization/English.json', 'English')
+merge('/home/ibrahimsharaf/Desktop/NewForums/phpBB/singles/portuguese.json'
+      , '/home/ibrahimsharaf/Desktop/NewForums/phpBB/portuguese.json', 'portuguese')

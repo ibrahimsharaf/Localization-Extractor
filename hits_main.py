@@ -6,8 +6,8 @@ from collections import Counter
 def parse_singles(filename, language):
     data = [line.strip() for line in open(filename, 'r')]
     d = dict(itertools.zip_longest(*[iter(data)] * 2, fillvalue=""))
-    with open(language+'.json', 'w') as file:
-        json.dump(d, file)
+    with open(language+'.json', 'w', encoding='utf-16') as file:
+        json.dump(d, file, ensure_ascii=False)
 
 
 def hits_score(hit_path, local_path, language):
@@ -39,6 +39,7 @@ def main():
     hits_path='/home/ibrahimsharaf/Desktop/hittext_sample/'
     localization_path='/home/ibrahimsharaf/Desktop/Localizations/'
     print(hits_score(hits_path, localization_path, 'English'))
+    #parse_singles('/home/ibrahimsharaf/Desktop/NewForums/phpBB/Spanish_singles.txt', 'spanish')
 
 if __name__ == "__main__":
     main()

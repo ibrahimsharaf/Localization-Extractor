@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 import codecs
 import itertools
@@ -58,8 +59,8 @@ def get_all_files(directoryname):
             singles= singles + parse_one_file(file_name)[1]
 
         print(len(localization_values))
-        with open(language+'.json', 'w') as f:
-            json.dump(localization_values, f)
+        with open(language+'.json', 'w', encoding='utf-16') as f:
+            json.dump(localization_values, f, ensure_ascii=False)
         with open(language + '_singles.txt', "w") as text_file:
             for item in singles:
                 text_file.write(item)
@@ -67,7 +68,7 @@ def get_all_files(directoryname):
 
 
 def main():
-    path = '/home/ibrahimsharaf/Desktop/phpbb'
+    path = '/home/ibrahimsharaf/Desktop/Forums/phpbb'
     get_all_files(path)
 
 

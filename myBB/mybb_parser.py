@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 import codecs
 import itertools
@@ -18,7 +19,7 @@ def parse_one_file(filename):
     :param filename: configurations file path
     :return: dict of key (English term) -> value (given language term)
     """
-    with codecs.open(filename, "r",encoding='utf-8', errors='ignore') as file:
+    with codecs.open(filename, 'r', encoding='utf-8', errors='ignore') as file:
         lines = file.readlines()
         lines = [x.strip() for x in lines]
 
@@ -48,12 +49,12 @@ def get_all_files(directoryname):
             file_name = pathlib.PurePath(path, name)
             localization_values.update(parse_one_file(file_name))
         print(len(localization_values))
-        with open(language+'.json', 'w') as f:
-            json.dump(localization_values, f)
+        with open(language+'.json', 'w', encoding='utf-16') as f:
+            json.dump(localization_values, f, ensure_ascii=False)
 
 
 def main():
-    path = '/home/ibrahimsharaf/Desktop/MyBB'
+    path = '/home/ibrahimsharaf/Desktop/Forums/MyBB'
     get_all_files(path)
 
 
