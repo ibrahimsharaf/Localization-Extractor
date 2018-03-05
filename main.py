@@ -62,7 +62,7 @@ def find_boilerplates(keywords):
         for key, value in loc_dict.items():
             if all(sub in key.lower() for sub in keywords.split()) or all(sub in value.lower() for sub in keywords.split()):
                 hits.append((key.strip(), value.strip()))
-        return hits
+    return hits
 
 
 if __name__ == "__main__":
