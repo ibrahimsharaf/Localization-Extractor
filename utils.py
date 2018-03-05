@@ -26,5 +26,3 @@ def get_files(directory1, directory2):
         for file2 in files2:
             if file1.split('/')[-1] == file2.split('/')[-1]:
                 merge(file1, file2, file1.split('/')[-1].split('.')[0])
-
-get_files('/home/ibrahimsharaf/Desktop/NewForums/xen+phpbb+vb', '/home/ibrahimsharaf/Desktop/NewForums/myBB')
