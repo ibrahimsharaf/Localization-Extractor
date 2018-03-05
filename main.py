@@ -2,6 +2,7 @@ import json
 import codecs
 import glob
 import itertools
+import os
 from collections import Counter
 
 
@@ -47,9 +48,32 @@ def hits_score(hits_path, locals_path):
     return str(round(score,2))
 
 
-def main():
-    print(hits_score('/home/ibrahimsharaf/Desktop/boilers.txt', '/home/ibrahimsharaf/Desktop/keys.txt'))
-    # get_all_localization_data('/home/ibrahimsharaf/Desktop/NewForums/all/*.json')
+def find_keywords(words):
+    results = []
+    for file in os.listdir('localizations'):
+        file = os.path.abspath(os.path.join('localizations', file))
+        # print(file)
+        loc_dict = json.load(codecs.open(file, 'r', encoding='utf-16'))
+        for key, value in loc_dict.items():
+            # if word in key or word in value:
+            if all(sub in key for sub in words.split()) or all(sub in value for sub in words.split()):
+                results.append((key.strip(), value.strip()))
+        return results
+    #     keys += list(loc_dict.keys())
+    #     values += list(loc_dict.values())
+    # keys =[key.strip().lower() for key in keys]
+    # values = [value.strip().lower() for value in values]
+    # keys_file = open('keys.txt', 'w', encoding='utf-16')
+    # for key in keys:
+    #     keys_file.write("%s\n" % key)
+    # vals_file = open('values.txt', 'w', encoding='utf-16')
+    # for val in values:
+    #     vals_file.write("%s\n" % val)
+
 
 if __name__ == "__main__":
-    main()
+    # print(hits_score('/home/ibrahimsharaf/Desktop/boilers.txt', '/home/ibrahimsharaf/Desktop/keys.txt'))
+    # get_all_localization_data('/home/ibrahimsharaf/Desktop/NewForums/all/*.json')
+    results = find_keyword('like post')
+    for result in results:
+        print(result)
