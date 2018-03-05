@@ -54,6 +54,11 @@ def hits_score(hits_path, locals_path):
 
 
 def find_boilerplates(keywords):
+    """
+    Fetches all localization pairs that contain any of the given keywords
+    :param keywords: search keywords
+    :return: list of tuples containing matching key (English) and value (other language)
+    """
     hits = []
     keywords = keywords.lower().strip()
     for file in os.listdir('localizations'):
@@ -62,7 +67,7 @@ def find_boilerplates(keywords):
         for key, value in loc_dict.items():
             if all(sub in key.lower() for sub in keywords.split()) or all(sub in value.lower() for sub in keywords.split()):
                 hits.append((key.strip(), value.strip()))
-        return hits
+    return hits
 
 
 if __name__ == "__main__":
